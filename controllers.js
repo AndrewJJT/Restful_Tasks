@@ -21,11 +21,10 @@ var controllers = {
     //work
     addtask: function addtask(req, res){
         Task.create(req.body)
-        .then ( res.redirect('/tasks'))
+        .then ((data) => res.json(data))
         .catch(err => res.json(err))
     },
 
-    //errors...while updating...
     updatetask:function updatetask(req, res){
         // Task.updateOne({ _id: req.body.id},[
         //     {$set: {title: req.body.title}},
@@ -34,7 +33,7 @@ var controllers = {
         //     {$set: {updatedAt: Date.now}}
         // ])
         Task.findByIdAndUpdate(req.params.id, req.body)
-        .then ( res.redirect('/tasks'))
+        .then ( (data) => res.json(data))
         .catch(err => res.json(err))    
     },
 

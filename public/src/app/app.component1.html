@@ -1,8 +1,43 @@
 <div class="container">
-<h3>Restful Tasks API</h3>
-<h3>All the tasks:</h3>
-<button (click) ="btngetalltasks()">GET ALL TASKS</button>
-<li *ngFor="let task of tasks">{{task.title}} - {{task.description}} <button (click)="showtaskdetail(task._id)">show</button></li>
-<p>{{task.title}}</p>
-<p>{{task.description}}</p>
+    <h3>Restful Tasks API</h3>
+
+    <form (submit) ="onSubmit()">
+        <p>{{newTask | json }}</p>
+        <div class="form-group">
+        <label for="">Title: </label>
+        <input type="text" name="newTask.title" [(ngModel)] = "newTask.title" />
+        </div>
+        <div class="form-group">
+        <label for="">Description: </label>
+        <input type="text" name="newTask.description" [(ngModel)] = "newTask.description" />
+        </div>
+        <input type="submit" value="Create New Task">
+    </form>
+
+    <h3>All the tasks:</h3>
+    <!-- <button (click) ="btngetalltasks()" class="btn btn-primary">GET ALL TASKS</button> -->
+    <li style="margin-bottom:5px" *ngFor="let task of tasks">{{task.title}} - {{task.description}} 
+        <button (click)="showtaskdetail(task._id)" class="btn btn-success">show</button> |
+        <button (click)="editTask(task._id)">Edit</button> |
+        <button (click)="deleteTask(task._id)">Delete</button>
+    </li>
+
+    <div *ngIf = "taskToEdit.title">
+        <form (submit) ="onSubmitToEdit()">
+            <p>{{ taskToEdit | json }}</p>
+            <div class="form-group">
+            <label for="">Title: </label>
+            <input type="text" name="taskToEdit.title" [(ngModel)] = "taskToEdit.title" />
+            </div>
+            <div class="form-group">
+            <label for="">Description: </label>
+            <input type="text" name="taskToEdit.description" [(ngModel)] = "taskToEdit.description" />
+            </div>
+            <input type="submit" value="Edit Task">
+        </form>
+    </div>
+    <p>{{task.title}}</p>
+    <p>{{task.description}}</p>
+
+
 </div>
