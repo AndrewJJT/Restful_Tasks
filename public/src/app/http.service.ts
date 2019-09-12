@@ -16,5 +16,8 @@ export class HttpService {
     return this._http.get('/tasks')
   }
 
+  getTask(id:string){
+    return this._http.get('/tasks/'+ id)
+  }
 }
 

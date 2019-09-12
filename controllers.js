@@ -5,7 +5,8 @@ var controllers = {
     //work
     getalltasks: function getalltasks(req, res) {
         Task.find()
-        .then ((data) => res.json(data))
+        // .then ((data) => res.json(data) // [X] this will return array in json , which is treated as an object
+        .then ((data) => res.json({alltasks:data})) //this will return object in json (which fit the json format)
         .catch(err => res.json(err))
         
     },
