@@ -36,8 +36,8 @@
             <input type="submit" value="Edit Task">
         </form>
     </div>
-    <p>{{task.title}}</p>
-    <p>{{task.description}}</p>
+
+    <app-task *ngIf="task" [taskToShow] ="task"></app-task>
 
 
 </div>
